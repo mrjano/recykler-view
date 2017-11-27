@@ -1,0 +1,53 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+ext.kotlin_version = '1.1.51'
+ext.android_support = '25.4.0'
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'recykler-view'
+
+    publishedGroupId = 'com.mrjano'
+    libraryName = 'Recykler View'
+    artifact = 'recykler-view'
+
+    libraryDescription = 'A Kotlin Recycler view to rule them all'
+
+    siteUrl = 'https://github.com/'
+    gitUrl = 'https://github.com/'
+
+    libraryVersion = '0.1'
+
+    developerId = 'mrjano'
+    developerName = 'Mr Jano'
+    developerEmail = 'jano@asd.com'
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile "com.android.support:support-v4:$android_support"
+    compile "com.android.support:appcompat-v7:$android_support"
+    compile "com.android.support:design:$android_support"
+    compile "com.android.support:recyclerview-v7:$android_support"
+}
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion '26.0.2'
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 25
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        androidTest.java.srcDirs += 'src/androidTest/kotlin'
+    }
+
+    lintOptions {
+        quiet true
+        abortOnError false
+    }
+}
