@@ -16,6 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name="recyclerview.mrjano.com.example.NoSelectionActivity">
+        </activity>
+        <activity android:name="recyclerview.mrjano.com.example.SingleSelectionActivity">
+        </activity>
+        <activity android:name="recyclerview.mrjano.com.example.MultipleSelectionActivity">
+        </activity>
     </application>
 
 </manifest>
