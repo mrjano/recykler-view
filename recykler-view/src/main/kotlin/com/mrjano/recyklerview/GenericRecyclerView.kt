@@ -78,6 +78,10 @@ abstract class GenericRecyclerView: RecyclerView {
         override fun getItemCount(): Int {
             return items.size
         }
+
+        override fun getItemViewType(position: Int): Int {
+            return position
+        }
     }
 }
 
