@@ -12,11 +12,5 @@ abstract class GenericViewHolder<T>(open val view: View) : RecyclerView.ViewHold
             field = value
             loadView(value!!)
         }
-    var selected: Boolean = false
-        set(value) {
-            field = value
-            selectionChanged(value)
-        }
     abstract fun loadView(item: T)
-    abstract fun selectionChanged(option: Boolean)
 }

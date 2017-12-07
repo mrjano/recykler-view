@@ -12,9 +12,9 @@ class SingleSelectionGenericRecyclerView: GenericRecyclerView {
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
-    private var selectedHolder: GenericViewHolder<Any>? = null
+    private var selectedHolder: SelectableGenericViewHolder<Any>? = null
 
-    fun <T> setAdapter(itemLayoutId: Int, viewHolder: (View) -> GenericViewHolder<T>, onSelectionChanged: ((T?) -> Unit)?) {
+    fun <T> setAdapter(itemLayoutId: Int, viewHolder: (View) -> SelectableGenericViewHolder<T>, onSelectionChanged: ((T?) -> Unit)?) {
         adapter = GenericRecyclerViewAdapter(itemLayoutId, viewHolder, {
             holder, position ->
             holder.item = getItem(position)
@@ -23,7 +23,7 @@ class SingleSelectionGenericRecyclerView: GenericRecyclerView {
                     null
                 } else {
                     selectedHolder?.selected = false
-                    holder as GenericViewHolder<Any>
+                    holder as SelectableGenericViewHolder<Any>
                 }
                 holder.selected = !holder.selected
 

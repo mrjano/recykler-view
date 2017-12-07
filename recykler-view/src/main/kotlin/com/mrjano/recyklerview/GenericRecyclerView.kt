@@ -43,13 +43,13 @@ abstract class GenericRecyclerView: RecyclerView {
     }
 
     fun <T>setItems(items: List<T>) {
-        val a = (adapter as GenericRecyclerViewAdapter<T>)
+        val a = (adapter as GenericRecyclerViewAdapter<T, GenericViewHolder<T>>)
         a.items.clear()
         addItems(items)
     }
 
     fun <T>addItems(items: List<T>) {
-        val a = (adapter as GenericRecyclerViewAdapter<T>)
+        val a = (adapter as GenericRecyclerViewAdapter<T, GenericViewHolder<T>>)
         a.items.addAll(items)
         //Make sure that the notifyDataSetChanged is done out of a scroll callback
         post({ a.notifyDataSetChanged() })
@@ -60,18 +60,18 @@ abstract class GenericRecyclerView: RecyclerView {
     }
 
     protected fun <T> getItem(position: Int) : T {
-        return (adapter as GenericRecyclerViewAdapter<T>).items[position]
+        return (adapter as GenericRecyclerViewAdapter<T, GenericViewHolder<T>>).items[position]
     }
 
-    inner class GenericRecyclerViewAdapter<T>(private val itemLayoutId: Int, private val viewHolder: (View) -> GenericViewHolder<T>, val onBindViewHolderDelegate: (holder: GenericViewHolder<T>, position: Int) -> Unit) : RecyclerView.Adapter<GenericViewHolder<T>>() {
+    inner class GenericRecyclerViewAdapter<T, K: GenericViewHolder<T>>(private val itemLayoutId: Int, private val viewHolder: (View) -> K, val onBindViewHolderDelegate: (holder: K, position: Int) -> Unit) : RecyclerView.Adapter<K>() {
         val items: MutableList<T> = ArrayList()
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GenericViewHolder<T> {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): K {
             val view = LayoutInflater.from(parent.context).inflate(itemLayoutId, parent, false)
             return viewHolder(view)
         }
 
-        override fun onBindViewHolder(holder: GenericViewHolder<T>, position: Int) {
+        override fun onBindViewHolder(holder: K, position: Int) {
             onBindViewHolderDelegate(holder, position)
         }
 

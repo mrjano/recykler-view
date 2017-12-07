@@ -2,6 +2,7 @@ package com.mrjano.recyklerview
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 
 /**
@@ -14,9 +15,10 @@ class MultipleSelectionGenericRecyclerView: GenericRecyclerView {
 
     private val selectedItems: MutableList<Any> = ArrayList()
 
-    fun <T> setAdapter(itemLayoutId: Int, viewHolder: (View) -> GenericViewHolder<T>, onSelectionChanged: ((List<T>) -> Unit)?) {
+    fun <T> setAdapter(itemLayoutId: Int, viewHolder: (View) -> SelectableGenericViewHolder<T>, onSelectionChanged: ((List<T>) -> Unit)?) {
         adapter = GenericRecyclerViewAdapter(itemLayoutId, viewHolder, {
-            holder, position ->
+            holder, position: Int ->
+            Log.e("ERROR", "Binding ${holder.item}")
             holder.item = getItem(position)
             holder.view.setOnClickListener {
                 if (holder.selected) {
