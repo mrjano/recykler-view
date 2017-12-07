@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.mooveit.library.Fakeit
-import com.mrjano.recyklerview.GenericViewHolder
+import com.mrjano.recyklerview.SelectableGenericViewHolder
 import kotlinx.android.synthetic.main.activity_single_selection.*
 import kotlinx.android.synthetic.main.list_item.view.*
 import java.util.*
@@ -22,7 +22,7 @@ class SingleSelectionActivity : AppCompatActivity() {
 
     }
 
-    class ViewHolder(override val view: View): GenericViewHolder<Model>(view) {
+    class ViewHolder(override val view: View): SelectableGenericViewHolder<Model>(view) {
         override fun loadView(item: Model) {
             view.title.text = item.title
         }

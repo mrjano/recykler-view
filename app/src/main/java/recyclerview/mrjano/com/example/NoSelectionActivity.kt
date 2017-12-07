@@ -32,9 +32,6 @@ class NoSelectionActivity : AppCompatActivity() {
         override fun loadView(item: Model) {
             view.title.text = item.title
         }
-
-        override fun selectionChanged(option: Boolean) {}
-
     }
 }
 

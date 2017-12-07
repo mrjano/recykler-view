@@ -3,9 +3,10 @@ package recyclerview.mrjano.com.example
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.View
 import com.mooveit.library.Fakeit
-import com.mrjano.recyklerview.GenericViewHolder
+import com.mrjano.recyklerview.SelectableGenericViewHolder
 import kotlinx.android.synthetic.main.activity_multiple_selection.*
 import kotlinx.android.synthetic.main.list_item.view.*
 
@@ -20,12 +21,13 @@ class MultipleSelectionActivity : AppCompatActivity() {
         recyclerView.setItems(items)
     }
 
-    class ViewHolder(override val view: View): GenericViewHolder<Model>(view) {
+    class ViewHolder(override val view: View): SelectableGenericViewHolder<Model>(view) {
         override fun loadView(item: Model) {
             view.title.text = item.title
         }
 
         override fun selectionChanged(option: Boolean) {
+            Log.e("ERROR", "changed $option for view $view ${view.title.text}")
             if(option) {
                 view.title.setTextColor(Color.RED)
             }
